@@ -1,0 +1,37 @@
+version: "3.8"
+services:
+  backend_bases:
+    build: ./src
+    ports:
+        - "5000:5000"
+    volumes:
+      - "$PWD/src:/src"
+    links:
+        - neo4j
+        - mongo
+    depends_on:
+        - neo4j
+        - mongo
+  frontend_bases:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    tty: true
+    volumes:
+      - ./front:/app
+      - /app/node_modules
+    links:
+      - backend_bases
+  neo4j:
+      image: "neo4j:latest"
+      ports:
+        - "7474:7474"
+        - "7687:7687"
+      environment:
+          - "NEO4J_AUTH=none"
+  mongo:
+      image: "mongo"
+      ports:
+        - "27017:27017"

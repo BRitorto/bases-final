@@ -1,0 +1,32 @@
+[
+  {
+    "isbn": "1933988673",
+    "user_id": 1,
+    "rating": 4,
+    "comments": "Super nice book!"
+  },
+  {
+    "isbn": "1933988673",
+    "user_id": 2,
+    "rating": 3,
+    "comments": "Meh"
+  },
+  {
+    "isbn": "1933988509",
+    "user_id": 3,
+    "rating": 5,
+    "comments": "Very informative."
+  },
+  {
+    "isbn": "1935182870",
+    "user_id": 2,
+    "rating": 5,
+    "comments": "Loved it!"
+  },
+  {
+    "isbn": "1935182870",
+    "user_id": 4,
+    "rating": 2,
+    "comments": "Didn't like it"
+  }
+]
