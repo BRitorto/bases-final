@@ -1,19 +1,6 @@
 Michael Smith
 Christopher Johnson
 Jessica Williams
-Matthew Jones
-Ashley Brown
-Jennifer Davis
-Joshua Miller
-Amanda Wilson
-Daniel Moore
-David Taylor
-James Anderson
-Robert Thomas
-John Jackson
-Joseph White
-Andrew Harris
-Ryan Martin
 Brandon Thompson
 Jason Garcia
 Justin Martinez
@@ -38,3 +25,4 @@ Timothy Baker
 Christina Gonzalez
 Kyle Nelson
 Rachel Carter
+Bianca Ritorto

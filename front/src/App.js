@@ -2,6 +2,13 @@ import React from "react";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Home from "./components/Home"
 import makeStyles from "@material-ui/core/styles/makeStyles";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Bianca from "./components/Bianca";
 
 const useStyles = makeStyles((theme) => ({
     '@global': {
@@ -46,9 +53,27 @@ const useStyles = makeStyles((theme) => ({
             paddingBottom: theme.spacing(6),
         },
     },
+    titles: {
+        color: theme.palette.primary
+    }
 }));
 
 export default function App() {
+    return (
+        <Router>
+                <Switch>
+                    <Route path="/my_books">
+                        <Bianca/>
+                    </Route>
+                    <Route path="/">
+                        <Home/>
+                    </Route>
+                </Switch>
+        </Router>
+    );
+}
+
+function AllBooks() {
     return (
         <React.Fragment>
             <CssBaseline />

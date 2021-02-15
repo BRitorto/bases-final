@@ -6,4 +6,4 @@ RUN pip install -U flask-cors
 EXPOSE 5000
 WORKDIR /app
 ADD . /app
-CMD ["flask", "run"]
+CMD ["flask", "run", "--host", "0.0.0.0"]

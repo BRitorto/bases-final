@@ -65,10 +65,10 @@ export default function Header(props) {
   return (
     <AppBar className={appBarClasses}>
       <Toolbar className={classes.container}>
-        <Typography color="inherit" className="Logo">
+        <Link color="inherit" className="Link" href="/">
           BReading
-        </Typography>
-        <Link variant="button" color="textPrimary" href="#" className="Link">
+        </Link>
+        <Link variant="button" color="textPrimary" href="/my_books" className="Link">
           Mi Usuario
         </Link>
         <IconButton

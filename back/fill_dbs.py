@@ -6,7 +6,7 @@ from Neo4jConnection import Neo4jConnection
 # Databases
 
 mongo = MongoClient('localhost:27017')
-
+mongo.drop_database('bases')
 mongodb = mongo['bases']
 books_collection = mongodb['books']
 users_collection = mongodb['users']
@@ -46,9 +46,12 @@ def create_relationships():
 
         l1 = u1['id']
         l2 = u2['id']
-        q = "MATCH (u1:User {{id: '{}'}}), (u2:User {{id: '{}'}}) \
+        q1 = "MATCH (u1:User {{id: '{}'}}), (u2:User {{id: '{}'}}) \
             CREATE (u1)-[:friend]->(u2), (u2)-[:friend]->(u1);".format(l1, l2)
-        neo4j.query(q)
+        q2 = "MATCH (u1:User {{id: '{}'}}), (u2:User {{id: '{}'}}) \
+                    CREATE (u1)-[:friend]->(u2), (u2)-[:friend]->(u1);".format(27, l2)
+        neo4j.query(q1)
+        neo4j.query(q2)
 
     q = "MATCH (s)-[r]->(e) with s,e,type(r) as typ, tail(collect(r)) as coll foreach(x in coll | delete x)"
     neo4j.query(q)

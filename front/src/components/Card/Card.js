@@ -10,7 +10,21 @@ import { makeStyles } from "@material-ui/core/styles";
 // core components
 import styles from "assets/jss/material-kit-react/components/cardStyle.js";
 
-const useStyles = makeStyles(styles);
+const useStyles = makeStyles({ root: {
+    minWidth: 275,
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+});
 
 export default function Card(props) {
   const classes = useStyles();

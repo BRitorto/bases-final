@@ -216,7 +216,7 @@
   },
   {
     "title": "jQuery in Action, Second Edition",
-    "isbn": "1935182323",
+    "isbn": "c",
     "pageCount": 488,
     "publishedDate": { "$date": "2010-06-01T00:00:00.000-0700" },
     "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/bibeault2.jpg",

@@ -28,5 +28,29 @@
     "user_id": 4,
     "rating": 2,
     "comments": "Didn't like it"
+  },
+  {
+    "isbn": "1933988428",
+    "user_id": 27,
+    "rating": 2,
+    "comments": "Didn't like it"
+  },
+  {
+    "isbn": "1935182870",
+    "user_id": 27,
+    "rating": 5,
+    "comments": "Loved it!"
+  },
+  {
+    "isbn": "1933988673",
+    "user_id": 27,
+    "rating": 4,
+    "comments": "Super nice book!"
+  },
+  {
+    "isbn": "193518220X",
+    "user_id": 27,
+    "rating": 3,
+    "comments": "Not that good but interesting"
   }
 ]

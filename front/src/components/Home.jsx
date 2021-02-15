@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
-import {CardContent, List, ListItem, ListItemText, Typography} from "@material-ui/core";
 
 import {
     getAllBooks
 } from '../services/apiService';
-import CardBody from "./Card/CardBody";
-import Card from "./Card/Card";
 import Header from "./Header/Header";
+import 'bootstrap/dist/css/bootstrap.css';
+import classes from "../assets/jss/material-kit-react/components/customLinearProgressStyle";
+import {CardContent, Grid, Typography, Card} from "@material-ui/core";
 
 export default class Home extends Component {
 
-    state = { books: [] };
+    state = {
+        books: []};
 
     componentDidMount() {
         getAllBooks()
@@ -23,19 +24,35 @@ export default class Home extends Component {
         return (
             <div>
                 <Header/>
-                {
-                this.state.books.map((item) => (
-                    <Card>
-                        <CardBody key={item['isbn']}>
-                            <Typography className={"name"} color="textSecondary" gutterBottom>
-                                {item['title']}
-                            </Typography>
-                            <Typography variant="body2" component="p">
-                                {item['description']}
-                            </Typography>
-                        </CardBody>
-                    </Card>
-                ))}
+                <Grid
+                    container
+                    direction="column"
+                    alignItems="center"
+                    justify="center"
+                    style={{ minHeight: '100vh'}}
+                    spacing={1}>
+                    {
+                    this.state.books.map((item) => (
+                        <Grid item xs={5}>
+                            <Card className= "MuiCard-root" variant="outlined" style={{display: 'inline-block'}}>
+                                <CardContent key={item['isbn']}>
+                                    <Typography className={classes.title} variant="h5" color="textSecondary">
+                                        {item['title']}
+                                    </Typography>
+                                    <Typography variant="body1" component="p">
+                                        {item['description']}
+                                    </Typography>
+                                    <Typography variant="body2">
+                                        Rating: {item['rating']}
+                                    </Typography>
+                                    <Typography variant="body2">
+                                       Rated by: {item['reviewers'].map(item => item.name + " ")}
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                    ))}
+                    </Grid>
             </div>
         );
     }
