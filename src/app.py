@@ -1,5 +1,6 @@
 from typing import Optional
 from flask import Flask
+from flask import request
 from pymongo import MongoClient
 from pydantic import BaseModel
 from Neo4jConnection import Neo4jConnection
@@ -61,7 +62,7 @@ def get_user_reviews(isbn):
     return {'user_reviews': result}
 
 
-@app.route(c, methods=['GET'])
+@app.route('/user/reviews/<user_id>', methods=['GET'])
 def get_all_user_reviews(user_id):
     q = "MATCH (b:Book)<-[r:rates]-(u:User{{id:'{}'}}) RETURN b.title as title, b.isbn as isbn, PROPERTIES(r) as rating".format(user_id)
     results = neo4j.query(q)
@@ -71,6 +72,28 @@ def get_all_user_reviews(user_id):
         response = {'title': result[0], 'description': cursor['description'], 'rating': result[2]['rating']}
         responses.append(response)
     return {'user_reviews': responses}
+
+
+@app.route('/user/friends/books/<user_id>', methods=['GET'])
+def get_all_user_friends_books(user_id):
+    q = "MATCH (b:Book)<-[:rates]-(:User)<-[:friend]-(u:User{{id:'{}'}}) RETURN DISTINCT b.isbn as isbn".format(user_id)
+    results = neo4j.query(q)
+    responses = []
+    for result in results:
+        cursor = books_collection.find_one({'isbn': result[0]})
+        response = {'title': cursor['title'], 'description': cursor['description']}
+        responses.append(response)
+    return {'friends_books': responses}
+
+
+@app.route('/rating/<isbn>', methods=['POST'])
+def post_rating(isbn):
+    rating = request.get_json()['rating']
+    q = "MATCH (b:Book), (u:User) WHERE b.isbn = '{}' AND u.id = '27' CREATE (u)-[r:rates {{rating: '{}'}}]->(b) RETURN type(r)".format(isbn, rating)
+    result = neo4j.query(q)
+    if result[0][0] == 'rates':
+        return {'success': 'true'}
+    return {'success': 'false'}
 
 
 if __name__ == '__main__':

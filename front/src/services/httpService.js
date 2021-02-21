@@ -2,6 +2,7 @@ import axios from "axios";
 
 axios.defaults.baseURL = "http://localhost:3000";
 axios.defaults.headers.common["Cache-Control"] = "no-cache";
+axios.defaults.headers.common["Content-Type"] = "application/json";
 
 axios.interceptors.response.use(null, error => {
     const expectedError =

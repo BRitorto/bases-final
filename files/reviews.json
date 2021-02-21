@@ -52,5 +52,11 @@
     "user_id": 27,
     "rating": 3,
     "comments": "Not that good but interesting"
+  },
+  {
+    "isbn": "1935182463",
+    "user_id": 22,
+    "rating": 3,
+    "comments": "Not that good but interesting"
   }
 ]

@@ -69,26 +69,9 @@ export default function Header(props) {
           BReading
         </Link>
         <Link variant="button" color="textPrimary" href="/my_books" className="Link">
-          Mi Usuario
+          Mi perfil
         </Link>
-        <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerToggle}
-        >
-          <Menu />
-        </IconButton>
       </Toolbar>
-        <Drawer
-          variant="temporary"
-          anchor={"right"}
-          open={mobileOpen}
-          classes={{
-            paper: classes.drawerPaper
-          }}
-          onClose={handleDrawerToggle}
-        >
-        </Drawer>
     </AppBar>
   );
 }

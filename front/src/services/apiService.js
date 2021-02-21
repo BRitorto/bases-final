@@ -10,11 +10,14 @@ export async function getAllBooks() {
         const ratings = await getBookRating(book.isbn);
         const reviewers = await getBookReviews(book.isbn);
         let sum = 0;
-        for (let i = 0; ratings.reviews[0] !== undefined && i < ratings.reviews[0].length; i++) {
-            sum += parseInt(ratings.reviews[0][i].rating, 10);
+        for (let i = 0; ratings.reviews[0] !== undefined && i < ratings.reviews.length; i++) {
+            sum += parseInt(ratings.reviews[i][0].rating, 10);
         }
-        book.rating = ratings.reviews[0] === undefined ? 0 : sum / ratings.reviews[0].length;
-        book.reviewers = reviewers.user_reviews[0] === undefined ? [] : reviewers.user_reviews[0];
+        book.rating = ratings.reviews[0] === undefined ? 0 : (sum / ratings.reviews.length).toFixed(2);
+        book.reviewers = [];
+        for (let i = 0; reviewers.user_reviews[0]!== undefined && i < reviewers.user_reviews.length; i++) {
+            book.reviewers.push(reviewers.user_reviews[i][0]);
+        }
     }
     return books;
 }
@@ -29,4 +32,16 @@ export function getBookReviews(isbn) {
 
 export function getUserReviews(user) {
     return fetch('/user/reviews/' + user).then(res => res.json());
+}
+
+export function getFriendsBooks(user) {
+    return fetch('/user/friends/books/' + user).then(res => res.json());
+}
+
+export function rateBook(isbn, rating) {
+    let response;
+    return http.post(
+        '/rating/' + isbn,
+        {rating: rating},
+    ).then(res => response = res.data);
 }
