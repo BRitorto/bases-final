@@ -79,6 +79,17 @@ def get_all_user_friends_books(user_id):
     return {'friends_books': responses}
 
 
+@app.route('/user/friends/<user_id>', methods=['GET'])
+def get_all_user_friends(user_id):
+    q = "MATCH (u1:User)<-[:friend]-(u:User{{id:'{}'}}) RETURN u1.name".format(user_id)
+    results = neo4j.query(q)
+    responses = []
+    for result in results:
+        response = {'name': result[0]}
+        responses.append(response)
+    return {'friends': responses}
+
+
 @app.route('/rating/<isbn>', methods=['POST'])
 def post_rating(isbn):
     rating = request.get_json()['rating']

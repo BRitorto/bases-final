@@ -33,6 +33,10 @@ export function getFriendsBooks(user) {
     return fetch('/user/friends/books/' + user).then(res => res.json());
 }
 
+export function getFriends(user) {
+    return fetch('/user/friends/' + user).then(res => res.json());
+}
+
 export function rateBook(isbn, rating) {
     let response;
     return http.post(

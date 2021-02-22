@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import Header from "./Header/Header";
-import {getFriendsBooks, getUserReviews} from "../services/apiService";
+import {getFriends, getFriendsBooks, getUserReviews} from "../services/apiService";
 import {Box, Card, CardContent, Grid, Typography} from "@material-ui/core";
 import classes from "../assets/jss/material-kit-react/components/customLinearProgressStyle";
 import 'home.css';
@@ -10,7 +10,8 @@ export default class Bianca extends Component {
 
     state = {
         reviews: [],
-        friends_reviews: []
+        friends_reviews: [],
+        friends: []
     };
 
     componentDidMount() {
@@ -22,6 +23,10 @@ export default class Bianca extends Component {
             .then((data) => {
                 this.setState({friends_reviews: data['friends_books']})
             });
+        getFriends(27)
+            .then((data) => {
+                this.setState({friends: data['friends']})
+            })
     }
 
     stars(rating) {
@@ -85,6 +90,17 @@ export default class Bianca extends Component {
                                 </CardContent>
                             </Card>
                       ))}
+                      <h1 className="font-weight-lighter" style={{paddingBottom: "1.5%", paddingTop: "2%"}}>Friends list</h1>
+                      <ul style={{display: 'inline-block'}}>
+                        {
+                          this.state.friends.map((friend) => (
+                                <li>
+                                    <h5 className="font-weight-lighter">
+                                        {friend['name']}
+                                    </h5>
+                                </li>
+                          ))}
+                        </ul>
                     </div>
                 </div>
             </div>
