@@ -50,16 +50,9 @@ def get_all_books():
 
 @app.route('/ratings/<isbn>', methods=['GET'])
 def get_ratings(isbn):
-    q = "MATCH (:Book {{isbn: '{}'}})<-[r:rates]-() RETURN PROPERTIES(r)".format(isbn)
+    q = "MATCH (:Book {{isbn: '{}'}})<-[r:rates]-(u:User) RETURN PROPERTIES(r) as reviews, u.name as user".format(isbn)
     result = neo4j.query(q)
     return {'reviews': result}
-
-
-@app.route('/reviews/<isbn>', methods=['GET'])
-def get_user_reviews(isbn):
-    q = "MATCH (:Book {{isbn: '{}'}})<-[r:rates]-(u:User) RETURN u {{.name, .id}} as user".format(isbn)
-    result = neo4j.query(q)
-    return {'user_reviews': result}
 
 
 @app.route('/user/reviews/<user_id>', methods=['GET'])

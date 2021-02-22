@@ -37,7 +37,7 @@ export default class Home extends Component {
     }
 
     biancaRated(item) {
-        return item['reviewers'].some(item => item.name === 'Bianca Ritorto');
+        return item['reviewers'].some(item => item === 'Bianca Ritorto');
     }
 
     openRateModal(e) {
@@ -95,7 +95,7 @@ export default class Home extends Component {
                                     <div>
                                         {
                                             item['reviewers'].length === 0 ? null :
-                                                item['reviewers'].map(item => this.rater(item.name))
+                                                item['reviewers'].map(item => this.rater(item))
                                         }
                                     </div>
                                     <div>
