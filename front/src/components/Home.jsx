@@ -61,6 +61,7 @@ export default class Home extends Component {
                     justify="center"
                     style={{ minHeight: '100vh'}}
                     spacing={1}>
+                    <h1 className="font-weight-lighter" style={{paddingBottom: "1%", paddingTop: "1%"}}>All Books</h1>
                     {
                     this.state.books.map((item) => (
                         <Grid item xs={5}>

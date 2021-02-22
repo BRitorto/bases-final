@@ -4,6 +4,7 @@ import {getFriendsBooks, getUserReviews} from "../services/apiService";
 import {Box, Card, CardContent, Grid, Typography} from "@material-ui/core";
 import classes from "../assets/jss/material-kit-react/components/customLinearProgressStyle";
 import 'home.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 export default class Bianca extends Component {
 
@@ -35,17 +36,18 @@ export default class Bianca extends Component {
         return (
             <div>
               <Header/>
-              <Box m={2} pt={3}>
-                  <Typography className="titles" variant="h2" gutterBottom>
-                        My ratings
-                </Typography>
-              <Grid
-                    container
-                    direction="row"
-                    spacing={3}>
-                    {
-                    this.state.reviews.map((item) => (
-                        <Grid item xs={4}>
+                <div className="row">
+                    <div className="col px-md-5">
+                        <h1 className="font-weight-lighter" style={{paddingBottom: "1.5%"}}>My ratings</h1>
+                    </div>
+                    <div className="col px-md-5">
+                        <h1 className="font-weight-lighter" style={{paddingBottom: "1.5%"}}>Friends also read</h1>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col px-md-5" style={{alignItems:"center", justify:"center"}}>
+                        {
+                            this.state.reviews.map((item) => (
                             <Card className= "MuiCard-root" variant="outlined" style={{display: 'inline-block'}}>
                                 <CardContent key={item['isbn']}>
                                     <Typography className={classes.title} variant="h5" color="textSecondary">
@@ -67,19 +69,11 @@ export default class Bianca extends Component {
                                     </div>
                                 </CardContent>
                             </Card>
-                        </Grid>
-                    ))}
-              </Grid>
-                <Typography className="titles" variant="h2" gutterBottom>
-                        Friends also read
-                </Typography>
-                    <Grid
-                    container
-                    direction="row"
-                    spacing={3}>
-                  {
-                    this.state.friends_reviews.map((item) => (
-                        <Grid item xs={4}>
+                        ))}
+                    </div>
+                    <div className="col px-md-5">
+                      {
+                          this.state.friends_reviews.map((item) => (
                             <Card className= "MuiCard-root" variant="outlined" style={{display: 'inline-block'}}>
                                 <CardContent key={item['isbn']}>
                                     <Typography className={classes.title} variant="h5" color="textSecondary">
@@ -90,10 +84,9 @@ export default class Bianca extends Component {
                                     </Typography>
                                 </CardContent>
                             </Card>
-                        </Grid>
-                    ))}
-                    </Grid>
-                  </Box>
+                      ))}
+                    </div>
+                </div>
             </div>
         );
     }

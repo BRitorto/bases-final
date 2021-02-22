@@ -69,7 +69,7 @@ export default function Header(props) {
           BReading
         </Link>
         <Link variant="button" color="textPrimary" href="/my_books" className="Link">
-          Mi perfil
+          My Profile
         </Link>
       </Toolbar>
     </AppBar>
